@@ -1,3 +1,40 @@
-<p>
-  parent works!
-</p>
+<ng-container *ngIf="!logged">
+  <div>
+    <div><input type="text" [(ngModel)]="username"></div>
+    <div><input type="password" [(ngModel)]="password"></div>
+    <div><button (click)="login()">Log IN</button></div>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="logged">
+  Create Post
+  <div>
+    <input type="text" [(ngModel)]="title" )]/>
+    <button (click)="createPost()">Create Post</button>
+  </div>
+  GetPost
+  <ng-container>
+    <div *ngFor="let c of postss">
+      ID:{{c.id}}<br/>
+      title:{{c.title}}<br/>
+      body:{{c.body}}<br/>
+      created_at:{{c.created_at}}<br/>
+      created_by:{{c.created_by}}<br/>
+      like_count:{{c.like_count}}<br/>
+
+    </div>
+  </ng-container>
+  <ng-container>
+    <div *ngFor="let c of postss">
+      <span (click)="getPost(c)">
+        <input type="text" [(ngModel)]="c.title" >
+        <input type="text" [(ngModel)]="c.body" >
+      </span>
+      <span (click)="deletePost(c)">Delete</span>
+      <span (click)="updatePost(c)">Update</span>
+    </div>
+  </ng-container>
+  <div>
+    <button (click)="logout()">LogOUt</button>
+  </div>
+</ng-container>
